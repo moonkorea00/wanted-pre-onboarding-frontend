@@ -1,10 +1,6 @@
-import axios from 'axios';
 import storage from '../utils/storage';
-import { BASE_URL, END_POINT } from '../config';
-
-const clientApi = axios.create({
-  baseURL: BASE_URL,
-});
+import clientApi from './axios';
+import { END_POINT } from '../config';
 
 clientApi.interceptors.response.use(
   res => {
