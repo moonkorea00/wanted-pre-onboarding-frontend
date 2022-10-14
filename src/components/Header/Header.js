@@ -1,27 +1,18 @@
 import logo from '../../assets/logo.svg';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router';
+import storage from '../../utils/storage';
 
 const Header = () => {
-  const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem('user_token');
 
-  const Logout = () => {
-    localStorage.clear();
-    navigate('/');
-  };
-  
   return (
     <HeaderContainer>
-      <Title
-        onClick={() => {
-          navigate('/');
-        }}
-      >
-        wanted: 프리온보딩
-      </Title>
+      <Title>wanted: 프리온보딩</Title>
       <Logo src={logo} alt="react-logo" />
-      {isLoggedIn && <LogoutButton onClick={Logout}>로그아웃</LogoutButton>}
+      {storage.get('access_token') && (
+        <SignOutButton onClick={storage.remove('access_token')}>
+          로그아웃
+        </SignOutButton>
+      )}
     </HeaderContainer>
   );
 };
@@ -57,7 +48,7 @@ const Logo = styled.img`
   }
 `;
 
-const LogoutButton = styled.button`
+const SignOutButton = styled.button`
   position: absolute;
   right: 0;
   margin-right: 3vw;
