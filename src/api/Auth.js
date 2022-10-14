@@ -1,4 +1,4 @@
-import storage from '../utils/storage';
+import storage from '../utils/Storage/storage';
 import clientApi from './axios';
 import { END_POINT } from '../config';
 

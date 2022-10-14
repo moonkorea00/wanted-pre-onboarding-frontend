@@ -11,14 +11,14 @@ const AuthForm = ({ formType, setFormType, inputData }) => {
   });
   const { handleSignUp, handleSignIn } = useAuth(form);
 
+  // 이메일과 비밀번호 유효성 검사
+  const isValidEmail = form.email.includes('@');
+  const isValidPassword = form.password.length > 7;
+
   const handleSubmitAuthForm = e => {
     e.preventDefault();
     formType === '로그인' ? handleSignIn() : handleSignUp();
   };
-
-  // Assignment 1 - 이메일과 비밀번호의 유효성 검사
-  const isValidEmail = form.email.includes('@');
-  const isValidPassword = form.password.length > 7;
 
   return (
     <Form onSubmit={handleSubmitAuthForm}>
@@ -29,7 +29,7 @@ const AuthForm = ({ formType, setFormType, inputData }) => {
         handleChange={handleChange}
         formType={formType}
       />
-      <SubmitButton disabled={!isValidEmail||!isValidPassword}>
+      <SubmitButton disabled={!isValidEmail || !isValidPassword}>
         {formType}
       </SubmitButton>
       {formType === '로그인' ? (

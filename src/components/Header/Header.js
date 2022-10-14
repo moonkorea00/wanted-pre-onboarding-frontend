@@ -1,6 +1,6 @@
 import logo from '../../assets/logo.svg';
 import styled from 'styled-components';
-import storage from '../../utils/storage';
+import storage from '../../utils/Storage/storage';
 import useAuth from '../../pages/Auth/hooks/useAuth';
 
 const Header = () => {
