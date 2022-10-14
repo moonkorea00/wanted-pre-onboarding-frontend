@@ -1,50 +1,42 @@
-import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import useInputs from '../../hooks/useInputs';
 import AuthInput from './AuthInput';
+import useAuth from './hooks/useAuth';
 
 const AuthForm = ({ formType, setFormType, inputData }) => {
-  const { form, handleChange } = useInputs({ name: '', email: '', password: '' });
-  const [error, setError] = useState('');
+  const { form, handleChange } = useInputs({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const { handleSignUp, handleSignIn } = useAuth(form);
 
-  const handleSubmit = async e => {
+  const handleSubmitAuthForm = e => {
     e.preventDefault();
-    try {
-      const req = await fetch(
-        'https://pre-onboarding-selection-task.shop/auth/signup',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(form),
-        }
-      );
-      const res = await req.json();
-      console.log(res);
-    } catch (e) {
-      console.log('error', e);
-    }
-
-    // formType === '로그인' ? login(data) : signUp(data);
+    formType === '로그인' ? handleSignIn() : handleSignUp();
   };
 
+  // Assignment 1 - 이메일과 비밀번호의 유효성 검사
+  const isValidEmail = form.email.includes('@');
+  const isValidPassword = form.password.length > 7;
+
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmitAuthForm}>
       <AuthTitle>{formType}</AuthTitle>
-      <AuthInput inputData={inputData} form={form} handleChange={handleChange} />
-      {error && formType === '로그인' ? (
-        <ErrorText>이메일 또는 비밀번호를 확인해 주세요.</ErrorText>
-      ) : (
-        <ErrorText>{error}</ErrorText>
-      )}
-      <SubmitButton disabled={false}>{formType}</SubmitButton>
+      <AuthInput
+        inputData={inputData}
+        form={form}
+        handleChange={handleChange}
+        formType={formType}
+      />
+      <SubmitButton disabled={!isValidEmail||!isValidPassword}>
+        {formType}
+      </SubmitButton>
       {formType === '로그인' ? (
         <p>
           계정이 없으신가요?{' '}
           <SwitchFormType
             onClick={() => {
-              setError('');
               setFormType('회원가입');
             }}
           >
@@ -56,7 +48,6 @@ const AuthForm = ({ formType, setFormType, inputData }) => {
           이미 가입하셨나요?{' '}
           <SwitchFormType
             onClick={() => {
-              setError('');
               setFormType('로그인');
             }}
           >
@@ -85,10 +76,6 @@ const AuthTitle = styled.h1`
   letter-spacing: 4px;
 `;
 
-const ErrorText = styled.p`
-  color: red;
-`;
-
 const SubmitButton = styled.button`
   width: 100%;
   padding: 1vh 1vw;
@@ -100,7 +87,7 @@ const SubmitButton = styled.button`
   border-radius: 7px;
   background-color: rgb(50, 150, 127);
   ${({ disabled }) => css`
-    opacity: ${disabled && '0.7'};
+    opacity: ${disabled && '0.5'};
     cursor: ${disabled ? 'auto' : 'pointer'};
 
     &:hover {

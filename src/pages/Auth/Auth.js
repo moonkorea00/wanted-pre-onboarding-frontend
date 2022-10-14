@@ -32,11 +32,12 @@ const SIGNIN_DATA = [
     type: 'text',
     name: 'email',
     placeholder: '이메일',
+    autoFocus: 'autoFocus',
   },
   {
     type: 'password',
     name: 'password',
-    placeholder: '비밀번호 (8글자 이상 입력)',
+    placeholder: '비밀번호',
   },
 ];
 
@@ -49,7 +50,8 @@ const SIGNUP_DATA = [
   {
     type: 'text',
     name: 'email',
-    placeholder: '이메일',
+    placeholder: '이메일 (@ 포함)',
+    autoFocus: 'autoFocus',
   },
   {
     type: 'password',

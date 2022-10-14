@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 const AuthInput = ({ inputData, form, handleChange }) => {
-  
   return (
     <>
-      {inputData?.map(({ type, name, placeholder }, idx) => {
+      {inputData?.map(({ type, name, placeholder, autoFocus }, idx) => {
         return (
           <AuthInputWrapper key={idx}>
             <UserInput
@@ -12,6 +11,7 @@ const AuthInput = ({ inputData, form, handleChange }) => {
               name={name}
               value={form[name]}
               placeholder={placeholder}
+              autoFocus={autoFocus}
               onChange={handleChange}
             />
           </AuthInputWrapper>
@@ -38,10 +38,6 @@ const UserInput = styled.input`
   &:focus {
     outline: none;
   }
-`;
-
-const ErrorText = styled.p`
-  color: red;
 `;
 
 export default AuthInput;

@@ -1,17 +1,17 @@
 import logo from '../../assets/logo.svg';
 import styled from 'styled-components';
 import storage from '../../utils/storage';
+import useAuth from '../../pages/Auth/hooks/useAuth';
 
 const Header = () => {
+  const { handleLogOut } = useAuth();
 
   return (
     <HeaderContainer>
       <Title>wanted: 프리온보딩</Title>
       <Logo src={logo} alt="react-logo" />
       {storage.get('access_token') && (
-        <SignOutButton onClick={storage.remove('access_token')}>
-          로그아웃
-        </SignOutButton>
+        <SignOutButton onClick={handleLogOut}>로그아웃</SignOutButton>
       )}
     </HeaderContainer>
   );
