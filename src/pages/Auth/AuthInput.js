@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const AuthInput = ({ inputData, form, onChange }) => {
+const AuthInput = ({ inputData, form, handleChange }) => {
   
   return (
     <>
@@ -12,7 +12,7 @@ const AuthInput = ({ inputData, form, onChange }) => {
               name={name}
               value={form[name]}
               placeholder={placeholder}
-              onChange={onChange}
+              onChange={handleChange}
             />
           </AuthInputWrapper>
         );

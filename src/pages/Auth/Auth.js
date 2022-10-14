@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import useTitle from '../../hooks/useTitle';
 import AuthForm from './AuthForm';
 
 const Auth = () => {
   const [formType, setFormType] = useState('로그인');
+  useTitle(formType);
 
   return (
     <>
