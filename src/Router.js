@@ -11,10 +11,10 @@ function Router() {
       <Header />
       <Routes>
         <Route element={<UnauthenticatedRoute />}>
-          <Route path="/" element={<Auth />} />
+          <Route path={ROUTES.auth} element={<Auth />} />
         </Route>
         <Route element={<AuthenticatedRoute />}>
-          <Route path="/todo" element={<Todo />} />
+          <Route path={ROUTES.todo} element={<Todo />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -22,3 +22,8 @@ function Router() {
 }
 
 export default Router;
+
+export const ROUTES = {
+  auth: '/',
+  todo: '/todo'
+}

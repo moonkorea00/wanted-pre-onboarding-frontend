@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 import AuthApi from '../../../api/auth';
 import storage from '../../../utils/Storage/storage';
+import { ROUTES } from '../../../Router';
 
 const useAuth = props => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const useAuth = props => {
   const handleSignUp = async () => {
     try {
       await AuthApi.signUp(props);
-      navigate('/todo');
+      navigate(ROUTES.todo);
     } catch (err) {
       alert(err.response.data.message);
       throw new Error(err);
@@ -20,7 +21,7 @@ const useAuth = props => {
   const handleSignIn = async () => {
     try {
       await AuthApi.signIn(props);
-      navigate('/todo');
+      navigate(ROUTES.todo);
     } catch (err) {
       alert(err.response.data.message);
       throw new Error(err);
@@ -30,7 +31,7 @@ const useAuth = props => {
   // 로그아웃
   const handleLogOut = () => {
     storage.remove('access_token');
-    navigate('/');
+    navigate(ROUTES.auth);
   };
 
   return { handleSignUp, handleSignIn, handleLogOut };
