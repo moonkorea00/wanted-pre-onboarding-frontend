@@ -13,6 +13,11 @@ const TodoItem = props => {
   const [isEditMode, toggleMode] = useToggle();
   const [isChecked, toggleChecked] = useToggle(isCompleted);
 
+  const onUpdateTodo = () => {
+    if (upDatedTodo) handleUpdateTodo({ id, todo: upDatedTodo, isCompleted });
+    return toggleMode();
+  };
+
   useEffect(() => {
     isEditMode && reset();
   }, [isEditMode]);
@@ -42,14 +47,7 @@ const TodoItem = props => {
         <Flexbox>
           {isEditMode ? (
             <>
-              <SaveEditButton
-                onClick={() => {
-                  handleUpdateTodo({ id, todo: upDatedTodo, isCompleted });
-                  toggleMode();
-                }}
-              >
-                변경
-              </SaveEditButton>
+              <SaveEditButton onClick={onUpdateTodo}>변경</SaveEditButton>
               <DiscardEditButton onClick={toggleMode}>취소</DiscardEditButton>
             </>
           ) : (
