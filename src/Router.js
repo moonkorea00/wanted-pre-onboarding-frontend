@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header/Header';
-import Auth from './pages/Auth/Auth';
-import Todo from './pages/Todo/Todo';
+import Header from './components/common/Header';
+import Auth from './pages/Auth';
+import Todo from './pages/Todo';
 import AuthenticatedRoute from './utils/ProtectedRoutes/AuthenticatedRoute';
 import UnauthenticatedRoute from './utils/ProtectedRoutes/UnauthenticatedRoute';
 

@@ -6,9 +6,12 @@ const useInputs = initialValue => {
   const handleChange = e => {
     const { name, value } = e.target;
     setForm(form => ({ ...form, [name]: value }));
+    console.log(form);
   };
 
-  return { form, handleChange };
+  const reset = () => setForm(initialValue);
+
+  return [form, handleChange, reset];
 };
 
 export default useInputs;

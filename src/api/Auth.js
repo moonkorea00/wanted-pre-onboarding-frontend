@@ -1,25 +1,11 @@
-import storage from '../utils/Storage/storage';
-import clientApi from './axios';
+import clientApi from './customAxios';
 import { END_POINT } from '../config';
 
-clientApi.interceptors.response.use(
-  res => {
-    const { access_token } = res.data;
-    storage.set('access_token', access_token);
-    return res;
-  },
-  err => {
-    console.log(`ERR:`, err);
-    return Promise.reject(err);
-  }
-);
-
 const AuthApi = {
-  signUp: async ({ email, password }) => {
+  signUp: ({ email, password }) => {
     return clientApi.post(END_POINT.signUp, { email, password });
   },
-
-  signIn: async ({ email, password }) => {
+  signIn: ({ email, password }) => {
     return clientApi.post(END_POINT.signIn, { email, password });
   },
 };

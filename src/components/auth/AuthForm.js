@@ -1,17 +1,16 @@
 import styled, { css } from 'styled-components';
-import useInputs from '../../hooks/useInputs';
+import useInputs from '../../hooks/common/useInputs';
 import AuthInput from './AuthInput';
-import useAuth from './hooks/useAuth';
+import useAuth from '../../hooks/auth/useAuth';
 
 const AuthForm = ({ formType, setFormType, inputData }) => {
-  const { form, handleChange } = useInputs({
+  const [form, handleChange] = useInputs({
     name: '',
     email: '',
     password: '',
   });
   const { handleSignUp, handleSignIn } = useAuth(form);
 
-  // 이메일과 비밀번호 유효성 검사
   const isValidEmail = form.email.includes('@');
   const isValidPassword = form.password.length > 7;
 
@@ -21,41 +20,42 @@ const AuthForm = ({ formType, setFormType, inputData }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmitAuthForm}>
-      <AuthTitle>{formType}</AuthTitle>
-      <AuthInput
-        inputData={inputData}
-        form={form}
-        handleChange={handleChange}
-        formType={formType}
-      />
-      <SubmitButton disabled={!isValidEmail || !isValidPassword}>
-        {formType}
-      </SubmitButton>
-      {formType === '로그인' ? (
-        <p>
-          계정이 없으신가요?{' '}
-          <SwitchFormType
-            onClick={() => {
-              setFormType('회원가입');
-            }}
-          >
-            회원가입
-          </SwitchFormType>
-        </p>
-      ) : (
-        <p>
-          이미 가입하셨나요?{' '}
-          <SwitchFormType
-            onClick={() => {
-              setFormType('로그인');
-            }}
-          >
-            로그인
-          </SwitchFormType>
-        </p>
-      )}
-    </Form>
+      <Form onSubmit={handleSubmitAuthForm}>
+        <AuthTitle>{formType}</AuthTitle>
+        <AuthInput
+          inputData={inputData}
+          form={form}
+          handleChange={handleChange}
+          formType={formType}
+        />
+        <SubmitButton disabled={!isValidEmail || !isValidPassword}>
+          {formType}
+        </SubmitButton>
+        {formType === '로그인' ? (
+          <p>
+            계정이 없으신가요?{' '}
+            <SwitchFormType
+              onClick={() => {
+                setFormType('회원가입');
+              }}
+            >
+              회원가입
+            </SwitchFormType>
+          </p>
+        ) : (
+          <p>
+            이미 가입하셨나요?{' '}
+            <SwitchFormType
+              onClick={() => {
+                setFormType('로그인');
+              }}
+            >
+              로그인
+            </SwitchFormType>
+          </p>
+        )}
+      </Form>
+
   );
 };
 
@@ -64,7 +64,6 @@ const Form = styled.form`
   height: 60vh;
   gap: 2.5vh;
   padding: 5vh;
-  margin: 13vh 35vw;
   border: 1px solid lightgrey;
   border-radius: 7px;
   background-color: white;

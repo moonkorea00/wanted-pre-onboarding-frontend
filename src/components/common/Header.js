@@ -1,7 +1,7 @@
-import logo from '../../assets/logo.svg';
+import ReactLogo from '../../assets/ReactLogo.svg';
 import styled from 'styled-components';
 import storage from '../../utils/Storage/storage';
-import useAuth from '../../pages/Auth/hooks/useAuth';
+import useAuth from '../../hooks/auth/useAuth';
 
 const Header = () => {
   const { handleLogOut } = useAuth();
@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Title>wanted: 프리온보딩</Title>
-      <Logo src={logo} alt="react-logo" />
+      <Logo src={ReactLogo} alt="react-logo" />
       {storage.get('access_token') && (
         <SignOutButton onClick={handleLogOut}>로그아웃</SignOutButton>
       )}
@@ -19,7 +19,7 @@ const Header = () => {
 
 const HeaderContainer = styled.header`
   ${({ theme }) => theme.flexCustom(null, 'center', 'center')}
-  width:100vw;
+  width: 100vw;
   background-color: black;
   border-bottom: 1px solid black;
 `;
@@ -65,4 +65,5 @@ const SignOutButton = styled.button`
     background-color: rgb(40, 140, 117);
   }
 `;
+
 export default Header;

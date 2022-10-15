@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import useTitle from '../../hooks/useTitle';
-import AuthForm from './AuthForm';
+import useTitle from '../hooks/common/useTitle';
+import AuthForm from '../components/auth/AuthForm';
+import AuthLayout from '../components/auth/AuthLayout';
 
 const Auth = () => {
   const [formType, setFormType] = useState('로그인');
   useTitle(formType);
 
   return (
-    <>
+    <AuthLayout>
       {formType === '로그인' ? (
         <AuthForm
           formType={formType}
@@ -21,7 +22,7 @@ const Auth = () => {
           inputData={SIGNUP_DATA}
         />
       )}
-    </>
+    </AuthLayout>
   );
 };
 
