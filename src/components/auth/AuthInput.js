@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const AuthInput = ({ inputData, form, handleChange }) => {
   return (
     <>
-      {inputData?.map(({ type, name, placeholder, autoFocus }, idx) => {
+      {inputData?.map(({ type, name, placeholder, requirements, autoFocus }, idx) => {
         return (
           <AuthInputWrapper key={idx}>
             <UserInput
@@ -14,6 +14,7 @@ const AuthInput = ({ inputData, form, handleChange }) => {
               autoFocus={autoFocus}
               onChange={handleChange}
             />
+            <RequirementText>{requirements}</RequirementText>
           </AuthInputWrapper>
         );
       })}
@@ -38,6 +39,11 @@ const UserInput = styled.input`
   &:focus {
     outline: none;
   }
+`;
+
+const RequirementText = styled.div`
+  margin: -1vh 0 -0.5vh 0.5vw;
+  font-size: 14px;
 `;
 
 export default AuthInput;
