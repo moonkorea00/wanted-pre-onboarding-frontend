@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { css } from 'styled-components';
 import { useEffect } from 'react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import useToggle from '../../hooks/common/useToggle';
@@ -19,11 +20,11 @@ const TodoItem = props => {
   };
 
   useEffect(() => {
-    isEditMode && reset();
+    if (isEditMode) return reset();
   }, [isEditMode]);
 
   return (
-    <TodoItemWrapper>
+    <TodoItemWrapper isChecked={isChecked}>
       <Checkbox
         type="checkbox"
         checked={isChecked}
@@ -42,7 +43,7 @@ const TodoItem = props => {
             autoFocus
           />
         ) : (
-          <TodoText>{todo}</TodoText>
+          <TodoText isChecked={isChecked}>{todo}</TodoText>
         )}
         <Flexbox>
           {isEditMode ? (
@@ -63,6 +64,12 @@ const TodoItem = props => {
 const TodoItemWrapper = styled.div`
   ${({ theme }) => theme.flexCustom(null, null, 'center')}
   border-bottom: 1px solid black;
+
+  ${({ isChecked }) =>
+    isChecked &&
+    css`
+      background-color: rgb(233, 233, 233);
+    `}
 `;
 
 const TodoWrapper = styled.div`
@@ -76,9 +83,15 @@ const TodoWrapper = styled.div`
 `;
 
 const TodoText = styled.div`
-  width: 80%;
+  width: 90%;
   overflow: hidden;
   font-size: 16px;
+
+  ${({ isChecked }) =>
+    isChecked &&
+    css`
+      text-decoration: line-through;
+    `}
 `;
 
 const EditTodoInput = styled.input`
