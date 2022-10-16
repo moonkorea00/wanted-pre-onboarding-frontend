@@ -17,9 +17,9 @@
 ## 목차
 
 - [설치 및 실행](#설치및실행)
-- [구현 목록 및 과제 요구사항](#구현 목록 및 과제 요구사항)
-- [기술 스택](##기술 스택)
-- [폴더 구조](## **폴더 구조**)
+- [구현 목록 및 과제 요구사항](#구현목록및과제요구사항)
+- [기술 스택](##기술스택)
+- [폴더 구조](##폴더구조)
 
 ## **설치 및 실행**
 
@@ -43,6 +43,8 @@ $ npm start
   - [ ] 로그인, 회원가입을 별도의 경로로 분리해도 무방합니다.
   
  ` - 로그인 / 회원가입은 하나의 form 컴포넌트로 전달하는 props에 따라 구성요소를 간소화했고 상수 데이터를 활용해서 하나의 input 컴포넌트로 다른 데이터를 출력하게 했습니다.`
+ 
+> 참고 폴더: (https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/pages/Auth.js)]
 
 #### 1. 이메일과 비밀번호의 유효성 검사기능을 구현해주세요
   
@@ -55,7 +57,6 @@ $ npm start
   - [ ]  로그인 API는 로그인이 성공했을 시 Response Body에 JWT를 포함해서 응답합니다.
   - [ ]  응답받은 JWT는 로컬 스토리지에 저장해주세요
   
-
   ` - 로그인 / 회원가입 API 호출 후 응답으로 받은 JWT는 여러 컴포넌트에서 재사용한다는 점을 고려해 컴포넌트단에서 구현하지 않고 스토리지 객체를 만들어 컴포넌트 간 유연하게 사용할 수 있도록 하였습니다.`
   
   > 참고 파일: [[src/utils/Storage/storage.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/utils/Storage/storage.js)]
@@ -156,6 +157,18 @@ public
       └─ Storage
          └─ storage.js
 ```
+
+## **기술 스택**
+
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"><img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
+
+### 선정 이유
+
+  - [ ] 컴포넌트 관리에 최적화된 리액트와 CRA로 초기 개발환경을 빠르게 구축할 수 있어서 접근성이 좋습니다.
+  - [ ] css-in-js 라이버러리의 이점으로 컴포넌트에 props를 전달하여 UI를 그리기 유용합니다.
+  - [ ] 리액트스럽게 컴포넌트 단위로 스타일을 지정해줄 수 있어서 재사용성이 높습니다.
+  - [ ] 가독성 좋고 직관적이게 컴포넌트 이름을 구성할 수 있어서 명료합니다.
+  - [ ] 인라인 스타일링의 단점도 극복하고 css-in-css보다 자유롭게 커스텀 컴포넌트를 만들 수 있습니다.
 
 ## **설치 및 실행**
 
