@@ -76,10 +76,13 @@ const TodoWrapper = styled.div`
 `;
 
 const TodoText = styled.div`
+  width: 80%;
+  overflow: hidden;
   font-size: 16px;
 `;
 
 const EditTodoInput = styled.input`
+  width: 100%;
   font-size: 16px;
   background-color: inherit;
   border: none;

@@ -5,7 +5,7 @@ import useInputs from '../../hooks/common/useInputs';
 const AddTodoForm = ({ todos }) => {
   const [{ todo }, handleChange] = useInputs({ todo: '' });
   const { handleCreateTodo } = useTodo();
-console.log(todo)
+  
   return (
     <Form>
       <TodoInput

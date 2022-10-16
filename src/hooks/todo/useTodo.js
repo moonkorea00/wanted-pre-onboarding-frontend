@@ -18,6 +18,7 @@ const useTodo = () => {
   const handleCreateTodo = async todo => {
     try {
       await TodoApi.createTodo(todo);
+      window.location.replace('/todo');
     } catch (err) {
       alert(FAILED_REQUEST);
       throw new Error(err);
@@ -27,6 +28,7 @@ const useTodo = () => {
   const handleUpdateTodo = async (id, todo, isCompleted) => {
     try {
       await TodoApi.updateTodo(id, todo, isCompleted);
+      window.location.replace('/todo');
     } catch (err) {
       alert(FAILED_REQUEST);
       throw new Error(err);
@@ -46,9 +48,7 @@ const useTodo = () => {
     try {
       if (window.confirm('삭제하시겠습니까?')) {
         await TodoApi.deleteTodo(id);
-        console.log('good')
-        setTodos(prev => prev.filter(item => item.id !== id));
-        console.log('nogood')
+        window.location.replace('/todo');
       } else return;
     } catch (err) {
       alert(FAILED_REQUEST);
