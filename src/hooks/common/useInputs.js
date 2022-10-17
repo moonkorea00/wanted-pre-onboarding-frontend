@@ -6,7 +6,6 @@ const useInputs = initialValue => {
   const handleChange = e => {
     const { name, value } = e.target;
     setForm(form => ({ ...form, [name]: value }));
-    console.log(form);
   };
 
   const reset = () => setForm(initialValue);
