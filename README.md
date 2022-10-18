@@ -44,7 +44,7 @@ $ npm start
   
  ` - 로그인 / 회원가입은 하나의 form 컴포넌트로 전달하는 props에 따라 구성요소를 간소화했고 상수 데이터를 활용해서 하나의 input 컴포넌트로 다른 데이터를 출력하게 했습니다.`
  
-> 참고 폴더: (https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/pages/Auth.js)]
+> 참고 폴더: [Auth](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/pages/Auth.js)
 
 #### 1. 이메일과 비밀번호의 유효성 검사기능을 구현해주세요
   
@@ -97,7 +97,7 @@ $ npm start
 
   ` - 낮은 결합도와 높은 재사용성을 고려해서 각각 다른 관심사의 커스텀훅으로 코드를 구현했습니다.`
 
-> 참고 폴더: (https://github.com/moonkorea00/wanted-pre-onboarding-frontend/tree/master/src/hooks)]
+> 참고 폴더: [src/hooks](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/tree/master/src/hooks)
 
   ` - 폴더 구조는 관심사에 따라 접근하기 용이하고 직관적이게 구성하고자 노력했습니다.`
 
@@ -169,11 +169,3 @@ public
   - [ ] 리액트스럽게 컴포넌트 단위로 스타일을 지정해줄 수 있어서 재사용성이 높습니다.
   - [ ] 가독성 좋고 직관적이게 컴포넌트 이름을 구성할 수 있어서 명료합니다.
   - [ ] 인라인 스타일링의 단점도 극복하고 css-in-css보다 자유롭게 커스텀 컴포넌트를 만들 수 있습니다.
-
-## **설치 및 실행**
-
-```
-$ git clone https://github.com/moonkorea00/wanted-pre-onboarding-frontend
-$ npm install
-$ npm start
-```
