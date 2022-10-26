@@ -14,8 +14,9 @@ const TodoItem = ({ todoProps: { id, todo, isCompleted }, setTodos }) => {
   const [isChecked, toggleChecked] = useToggle(isCompleted);
 
   const onUpdateTodo = () => {
-    if (upDatedTodo) handleUpdateTodo({ id, todo: upDatedTodo, isCompleted },setTodos);
-    return toggleMode();
+    if (upDatedTodo) handleUpdateTodo({ id, todo: upDatedTodo, isCompleted }, setTodos);
+    else return;
+    toggleMode();
   };
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const TodoItem = ({ todoProps: { id, todo, isCompleted }, setTodos }) => {
           <EditTodoInput
             type="text"
             name="upDatedTodo"
-            value={upDatedTodo || todo}
+            defaultValue={todo}
             onChange={handleChange}
             autoFocus
           />
