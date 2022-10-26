@@ -6,8 +6,7 @@ import useToggle from '../../hooks/common/useToggle';
 import useTodo from '../../hooks/todo/useTodo';
 import useInputs from '../../hooks/common/useInputs';
 
-const TodoItem = props => {
-  const { id, todo, isCompleted } = props.todo;
+const TodoItem = ({ todoProps: { id, todo, isCompleted }, setTodos }) => {
   const { handleUpdateTodo, handleUpdateIsCompleted, handleDeleteTodo } =
     useTodo();
   const [{ upDatedTodo }, handleChange, reset] = useInputs({ upDatedTodo: '' });
@@ -15,7 +14,7 @@ const TodoItem = props => {
   const [isChecked, toggleChecked] = useToggle(isCompleted);
 
   const onUpdateTodo = () => {
-    if (upDatedTodo) handleUpdateTodo({ id, todo: upDatedTodo, isCompleted });
+    if (upDatedTodo) handleUpdateTodo({ id, todo: upDatedTodo, isCompleted },setTodos);
     return toggleMode();
   };
 
@@ -24,13 +23,16 @@ const TodoItem = props => {
   }, [isEditMode]);
 
   return (
-    <TodoItemWrapper isChecked={isChecked}>
+    <TodoItemWrapper>
       <Checkbox
         type="checkbox"
         checked={isChecked}
         onChange={toggleChecked}
         onClick={() =>
-          handleUpdateIsCompleted({ id, todo, isCompleted: !isChecked })
+          handleUpdateIsCompleted(
+            { id, todo, isCompleted: !isChecked },
+            setTodos
+          )
         }
       />
       <TodoWrapper>
@@ -54,7 +56,7 @@ const TodoItem = props => {
           ) : (
             <AiFillEdit onClick={toggleMode} />
           )}
-          <AiFillDelete onClick={() => handleDeleteTodo(id)} />
+          <AiFillDelete onClick={() => handleDeleteTodo(id, setTodos)} />
         </Flexbox>
       </TodoWrapper>
     </TodoItemWrapper>

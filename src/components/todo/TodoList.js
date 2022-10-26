@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Suspense, lazy } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { IconContext } from 'react-icons';
 import Spinner from '../common/Spinner';
 import useTodo from '../../hooks/todo/useTodo';
@@ -8,7 +8,12 @@ const TodoItem = lazy(() => import('./TodoItem'));
 const AddTodoForm = lazy(() => import('./AddTodoForm'));
 
 const TodoList = () => {
-  const { todos } = useTodo();
+  const [todos, setTodos] = useState([]);
+  const { handleGetTodos } = useTodo();
+
+  useEffect(() => {
+    handleGetTodos(setTodos);
+  }, []);
 
   return (
     <IconContext.Provider
@@ -19,10 +24,15 @@ const TodoList = () => {
         <Suspense fallback={<Spinner />}>
           <TodoGrid>
             {todos?.map(todo => (
-              <TodoItem key={todo.id} todo={todo} />
+              <TodoItem
+                key={todo.id}
+                todoProps={todo}
+                todos={todos}
+                setTodos={setTodos}
+              />
             ))}
           </TodoGrid>
-          <AddTodoForm todos={todos} />
+          <AddTodoForm todos={todos} setTodos={setTodos}/>
         </Suspense>
       </TodoListContainer>
     </IconContext.Provider>

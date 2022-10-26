@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import useTodo from '../../hooks/todo/useTodo';
 import useInputs from '../../hooks/common/useInputs';
 
-const AddTodoForm = ({ todos }) => {
+const AddTodoForm = ({ todos, setTodos }) => {
   const [{ todo }, handleChange] = useInputs({ todo: '' });
   const { handleCreateTodo } = useTodo();
-  
+
   return (
     <Form>
       <TodoInput
@@ -19,7 +19,7 @@ const AddTodoForm = ({ todos }) => {
       />
       <AddTodoButton
         onClick={() => {
-          handleCreateTodo({ todo });
+          handleCreateTodo({todo}, setTodos);
         }}
         disabled={!todo}
       >

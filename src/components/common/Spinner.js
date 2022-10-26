@@ -15,11 +15,11 @@ const SpinnerContainer = styled.div`
 `;
 
 const Circle = styled.div`
+  width: 70px;
+  height: 70px;
   border: 10px solid #32967f;
   border-top: 10px solid #fafafa;
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
   animation: spin 2s linear infinite;
 
   @keyframes spin {
