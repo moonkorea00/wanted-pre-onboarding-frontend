@@ -20,6 +20,7 @@
 - [구현 목록 및 과제 요구사항](#구현-목록-및-과제-요구사항)
 - [기술 스택](#기술-스택)
 - [폴더 구조](#폴더-구조)
+- [리팩토링](#리팩토링)
 
 ## **설치 및 실행**
 
@@ -59,7 +60,7 @@ $ npm start
   
   ` - 로그인 / 회원가입 API 호출 후 응답으로 받은 JWT는 여러 컴포넌트에서 재사용한다는 점을 고려해 컴포넌트단에서 구현하지 않고 스토리지 객체를 만들어 컴포넌트 간 유연하게 사용할 수 있도록 하였습니다.`
   
-  > 참고 파일: [[src/utils/Storage/storage.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/utils/Storage/storage.js)]
+  > 참고 파일: [src/utils/Storage/storage.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/utils/Storage/storage.js)
 
 #### 3. 로그인 여부에 따른 리다이렉트 처리를 구현해주세요
   
@@ -68,9 +69,9 @@ $ npm start
 
   ` - 로그인 유무에 따른 페이지 접근 권한은 컴포넌트에 도달해서 판단하면 비효율적이라고 생각해서 토큰 유무를 권한 유틸리티 함수로 관리했습니다.`
 
-  > 참고 파일: [[src/utils/ProtectedRoutes/AuthenticatedRoute.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/utils/ProtectedRoutes/AuthenticatedRoute.js)]
+  > 참고 파일: [src/utils/ProtectedRoutes/AuthenticatedRoute.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/utils/ProtectedRoutes/AuthenticatedRoute.js)
   
-  > 참고 파일: [[  src/utils/ProtectedRoutes/UnauthenticatedRoute.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/utils/ProtectedRoutes/UnauthenticatedRoute.js)]
+  > 참고 파일: [  src/utils/ProtectedRoutes/UnauthenticatedRoute.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/utils/ProtectedRoutes/UnauthenticatedRoute.js)
   
 ### 투두 리스트
 
@@ -87,13 +88,13 @@ $ npm start
   
   ` - 비동기 통신은 추상화된 함수를 공통으로 사용하고자 axios 인스턴스를 기반으로 관리했습니다.`
 
-> 참고 파일: [[src/api/customAxios.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/api/customAxios.js)]
+> 참고 파일: [src/api/customAxios.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/api/customAxios.js)
 
   ` - Authentication과 Todo 관련 비동기 통신 로직은 API 디렉토리에서 관리하게 하여 최대한 직관적이게 비동기 통신 함수를 구현하고자 했습니다.`
   
-> 참고 파일: [[src/api/Todo.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/api/Todo.js)]
+> 참고 파일: [src/api/Todo.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/api/Todo.js)
 
-> 참고 파일: [[src/api/Auth.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/api/Auth.js)]
+> 참고 파일: [src/api/Auth.js](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/blob/master/src/api/Auth.js)
 
   ` - 낮은 결합도와 높은 재사용성을 고려해서 각각 다른 관심사의 커스텀훅으로 코드를 구현했습니다.`
 
@@ -169,3 +170,7 @@ public
   - [ ] 리액트스럽게 컴포넌트 단위로 스타일을 지정해줄 수 있어서 재사용성이 높습니다.
   - [ ] 가독성 좋고 직관적이게 컴포넌트 이름을 구성할 수 있어서 명료합니다.
   - [ ] 인라인 스타일링의 단점도 극복하고 css-in-css보다 자유롭게 커스텀 컴포넌트를 만들 수 있습니다.
+  
+## 리팩토링
+  - 22.10.26 [react suspense로 로딩상태 처리](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/commit/8ddb1c2829d69ca5a2051a9c0af7ddf295a0c6a5)
+  - 22.10.27 [팀원 피드백](https://github.com/moonkorea00/wanted-pre-onboarding-frontend/issues/1)
