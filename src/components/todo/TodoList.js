@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { useState, useEffect, Suspense, lazy } from 'react';
+import styled from 'styled-components';
 import { IconContext } from 'react-icons';
 import Spinner from '../common/Spinner';
 import useTodo from '../../hooks/todo/useTodo';
@@ -32,7 +32,7 @@ const TodoList = () => {
               />
             ))}
           </TodoGrid>
-          <AddTodoForm todos={todos} setTodos={setTodos}/>
+          <AddTodoForm todos={todos} setTodos={setTodos} />
         </Suspense>
       </TodoListContainer>
     </IconContext.Provider>

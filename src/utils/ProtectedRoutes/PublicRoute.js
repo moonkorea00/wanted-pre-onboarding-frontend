@@ -2,7 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import storage from '../Storage/storage';
 import { ROUTES } from '../../Router';
 
-const UnauthenticatedRoute = () => {
+const PublicRoute = () => {
   return storage.get('access_token') ? (
     <Navigate to={ROUTES.todo} replace />
   ) : (
@@ -10,4 +10,4 @@ const UnauthenticatedRoute = () => {
   );
 };
 
-export default UnauthenticatedRoute;
+export default PublicRoute;

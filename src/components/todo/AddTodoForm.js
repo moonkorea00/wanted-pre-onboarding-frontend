@@ -6,7 +6,7 @@ import useInputs from '../../hooks/common/useInputs';
 const AddTodoForm = ({ todos, setTodos }) => {
   const [{ todo }, handleChange] = useInputs({ todo: '' });
   const { handleCreateTodo } = useTodo();
-  console.log(todo);
+
   return (
     <Form>
       <TodoInput
@@ -19,7 +19,8 @@ const AddTodoForm = ({ todos, setTodos }) => {
         autoFocus
       />
       <AddTodoButton
-        onClick={() => {
+        onClick={e => {
+          e.preventDefault();
           handleCreateTodo({ todo }, setTodos);
         }}
         disabled={!todo}
