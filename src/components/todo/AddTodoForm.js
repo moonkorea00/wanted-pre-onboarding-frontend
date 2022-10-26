@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { css } from 'styled-components';
 import useTodo from '../../hooks/todo/useTodo';
 import useInputs from '../../hooks/common/useInputs';
 
 const AddTodoForm = ({ todos, setTodos }) => {
   const [{ todo }, handleChange] = useInputs({ todo: '' });
   const { handleCreateTodo } = useTodo();
-
+  console.log(todo);
   return (
     <Form>
       <TodoInput
@@ -19,9 +20,10 @@ const AddTodoForm = ({ todos, setTodos }) => {
       />
       <AddTodoButton
         onClick={() => {
-          handleCreateTodo({todo}, setTodos);
+          handleCreateTodo({ todo }, setTodos);
         }}
         disabled={!todo}
+        todo={todo}
       >
         추가
       </AddTodoButton>
@@ -54,7 +56,7 @@ const AddTodoButton = styled.button`
   border: none;
   letter-spacing: 2px;
   opacity: 0.7;
-  cursor: pointer;
+  cursor: ${({ todo }) => todo && 'pointer'};
 
   &:hover {
     opacity: 1;

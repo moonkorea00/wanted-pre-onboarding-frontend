@@ -21,6 +21,7 @@ const NotFound = () => {
     </NotFoundTemplate>
   );
 };
+
 const NotFoundTemplate = styled.main`
   ${({ theme }) => theme.flexCustom('column', 'center', 'center')};
   width: 100vw;
