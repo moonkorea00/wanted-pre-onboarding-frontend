@@ -56,7 +56,9 @@ const Heading = styled.h1`
 `;
 
 const TodoGrid = styled.ul`
+height: 60vh;
   padding-left: 3vw;
+  overflow-y: auto;
 `;
 
 export default TodoList;

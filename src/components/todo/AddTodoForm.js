@@ -4,8 +4,14 @@ import useTodo from '../../hooks/todo/useTodo';
 import useInputs from '../../hooks/common/useInputs';
 
 const AddTodoForm = ({ todos, setTodos }) => {
-  const [{ todo }, handleChange] = useInputs({ todo: '' });
+  const [{ todo }, handleChange, reset] = useInputs({ todo: '' });
   const { handleCreateTodo } = useTodo();
+
+  const onCreateTodo = e => {
+    e.preventDefault();
+    handleCreateTodo({ todo }, setTodos);
+    reset();
+  };
 
   return (
     <Form>
@@ -18,14 +24,7 @@ const AddTodoForm = ({ todos, setTodos }) => {
         todos={todos}
         autoFocus
       />
-      <AddTodoButton
-        onClick={e => {
-          e.preventDefault();
-          handleCreateTodo({ todo }, setTodos);
-        }}
-        disabled={!todo}
-        todo={todo}
-      >
+      <AddTodoButton onClick={onCreateTodo} disabled={!todo} todo={todo}>
         추가
       </AddTodoButton>
     </Form>
