@@ -2,8 +2,7 @@ import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/common/Header';
 import Auth from './pages/Auth';
-import PrivateRoute from './utils/ProtectedRoutes/PrivateRoute';
-import PublicRoute from './utils/ProtectedRoutes/PublicRoute';
+import RequireAuth from './utils/ProtectedRoutes/RequireAuth';
 import NotFound from './pages/NotFound';
 
 const Todo = lazy(() => import('./pages/Todo'));
@@ -13,10 +12,16 @@ function Router() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route element={<PublicRoute />}>
+        <Route
+          element={
+            <RequireAuth isAuthRequired={false} redirectUrl={ROUTES.todo} />
+          }
+        >
           <Route path={ROUTES.auth} element={<Auth />} />
         </Route>
-        <Route element={<PrivateRoute />}>
+        <Route
+          element={<RequireAuth isAuthRequired redirectUrl={ROUTES.auth} />}
+        >
           <Route
             path={ROUTES.todo}
             element={
