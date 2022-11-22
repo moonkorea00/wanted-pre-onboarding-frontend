@@ -9,7 +9,7 @@ const clientApi = axios.create({
 clientApi.interceptors.request.use(
   config => {
     const access_token = storage.get('access_token');
-    if (access_token) {
+    if (!!access_token && config.headers) {
       config.headers.Authorization = 'Bearer ' + access_token;
     }
     return config;

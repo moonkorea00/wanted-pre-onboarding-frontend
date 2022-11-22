@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
-const TodoLayout = ({ children }) => {
+interface IProps {
+  children: React.ReactNode;
+}
+
+const TodoLayout = ({ children }: IProps) => {
   return <TodoTemplate>{children}</TodoTemplate>;
 };
 
 const TodoTemplate = styled.main`
-  ${({ theme }) => theme.flexCustom(null, null, null)}
+  display: flex;
   width: 50vw;
+  min-width: 800px;
   height: 77vh;
   margin: 6vh auto;
   border: 1px solid black;

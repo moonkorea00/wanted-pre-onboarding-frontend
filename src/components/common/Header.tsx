@@ -18,8 +18,9 @@ const Header = () => {
 };
 
 const HeaderContainer = styled.header`
-  ${({ theme }) => theme.flexCustom(null, 'center', 'center')}
+  ${({ theme }) => theme.flexCenter}
   width: 100vw;
+  min-width: 600px;
   background-color: black;
   border-bottom: 1px solid black;
 `;

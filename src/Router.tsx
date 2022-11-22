@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/common/Header';
 import Auth from './pages/Auth';
 import RequireAuth from './utils/ProtectedRoutes/RequireAuth';
-import NotFound from './pages/NotFound';
+import NotFound from './pages/NotFound.';
 
 const Todo = lazy(() => import('./pages/Todo'));
 

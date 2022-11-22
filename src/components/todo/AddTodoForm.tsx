@@ -1,14 +1,24 @@
 import styled from 'styled-components';
-import { css } from 'styled-components';
 import useTodo from '../../hooks/todo/useTodo';
 import useInputs from '../../hooks/common/useInputs';
 
-const AddTodoForm = ({ todos, setTodos }) => {
+interface TodoProps {
+  id: number;
+  todo: string;
+  isCompleted: boolean;
+}
+
+interface IProps {
+  setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>;
+}
+
+const AddTodoForm = ({ setTodos }: IProps) => {
   const [{ todo }, handleChange, reset] = useInputs({ todo: '' });
+  // const [todo, handleChange, reset] = useInputs({ todo: '' });
   const { handleCreateTodo } = useTodo();
 
-  const onCreateTodo = e => {
-    e.preventDefault();
+  const onCreateTodo = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     handleCreateTodo({ todo }, setTodos);
     reset();
   };
@@ -21,7 +31,6 @@ const AddTodoForm = ({ todos, setTodos }) => {
         name="todo"
         value={todo}
         onChange={handleChange}
-        todos={todos}
         autoFocus
       />
       <AddTodoButton onClick={onCreateTodo} disabled={!todo} todo={todo}>
@@ -32,7 +41,8 @@ const AddTodoForm = ({ todos, setTodos }) => {
 };
 
 const Form = styled.form`
-  ${({ theme }) => theme.flexCustom(null, 'space-between', null)}
+  display: flex;
+  justify-content: space-between;
   margin-left: 3vw;
   border-bottom: 1px solid black;
 `;
@@ -56,7 +66,7 @@ const AddTodoButton = styled.button`
   border: none;
   letter-spacing: 2px;
   opacity: 0.7;
-  cursor: ${({ todo }) => todo && 'pointer'};
+  cursor: ${({ todo }: TodoProps) => todo && 'pointer'};
 
   &:hover {
     opacity: 1;

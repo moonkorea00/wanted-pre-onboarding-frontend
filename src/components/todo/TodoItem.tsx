@@ -1,20 +1,40 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { useEffect } from 'react';
+import { SetStateAction, useEffect } from 'react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import useToggle from '../../hooks/common/useToggle';
 import useTodo from '../../hooks/todo/useTodo';
 import useInputs from '../../hooks/common/useInputs';
 
-const TodoItem = ({ todoProps: { id, todo, isCompleted }, setTodos }) => {
+interface Iprops {
+  id: number;
+  todo: string;
+  isCompleted: boolean;
+}
+
+interface TodoItemProps {
+  todoProps: {
+    id: number;
+    todo: string;
+    isCompleted: boolean;
+  };
+  setTodos: React.Dispatch<SetStateAction<Iprops[]>>;
+}
+
+const TodoItem = ({
+  todoProps: { id, todo, isCompleted },
+  setTodos,
+}: TodoItemProps) => {
   const { handleUpdateTodo, handleUpdateIsCompleted, handleDeleteTodo } =
     useTodo();
+  // const [{ upDatedTodo }, handleChange, reset] = useInputs({ upDatedTodo: '' });
   const [{ upDatedTodo }, handleChange, reset] = useInputs({ upDatedTodo: '' });
   const [isEditMode, toggleMode] = useToggle();
   const [isChecked, toggleChecked] = useToggle(isCompleted);
 
   const onUpdateTodo = () => {
-    if (upDatedTodo) handleUpdateTodo({ id, todo: upDatedTodo, isCompleted }, setTodos);
+    if (upDatedTodo)
+      handleUpdateTodo({ id, todo: upDatedTodo, isCompleted }, setTodos);
     else return;
     toggleMode();
   };
@@ -65,10 +85,10 @@ const TodoItem = ({ todoProps: { id, todo, isCompleted }, setTodos }) => {
 };
 
 const TodoItemWrapper = styled.div`
-  ${({ theme }) => theme.flexCustom(null, null, 'center')}
+  ${({ theme }) => theme.flexDefault}
   border-bottom: 1px solid black;
 
-  ${({ isChecked }) =>
+  ${({ isChecked }: { isChecked: boolean }) =>
     isChecked &&
     css`
       background-color: rgb(233, 233, 233);
@@ -76,7 +96,8 @@ const TodoItemWrapper = styled.div`
 `;
 
 const TodoWrapper = styled.div`
-  ${({ theme }) => theme.flexCustom(null, 'space-between', 'center')};
+  ${({ theme }) => theme.flexDefault};
+  justify-content: space-between;
   width: 100%;
   height: 4vh;
   padding: 2.5vh 0;

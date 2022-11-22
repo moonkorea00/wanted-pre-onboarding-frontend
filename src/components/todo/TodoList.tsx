@@ -7,8 +7,14 @@ import useTodo from '../../hooks/todo/useTodo';
 const TodoItem = lazy(() => import('./TodoItem'));
 const AddTodoForm = lazy(() => import('./AddTodoForm'));
 
+interface TodoProps {
+  id: number;
+  todo: string;
+  isCompleted: boolean;
+}
+
 const TodoList = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<TodoProps[]>([]);
   const { handleGetTodos } = useTodo();
 
   useEffect(() => {
@@ -27,12 +33,11 @@ const TodoList = () => {
               <TodoItem
                 key={todo.id}
                 todoProps={todo}
-                todos={todos}
                 setTodos={setTodos}
               />
             ))}
           </TodoGrid>
-          <AddTodoForm todos={todos} setTodos={setTodos} />
+          <AddTodoForm setTodos={setTodos} />
         </Suspense>
       </TodoListContainer>
     </IconContext.Provider>
@@ -56,7 +61,7 @@ const Heading = styled.h1`
 `;
 
 const TodoGrid = styled.ul`
-height: 60vh;
+  height: 60vh;
   padding-left: 3vw;
   overflow-y: auto;
 `;

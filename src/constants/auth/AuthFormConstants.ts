@@ -3,7 +3,7 @@ export const SIGNIN_DATA = [
     type: 'text',
     name: 'email',
     placeholder: '이메일',
-    autoFocus: 'autoFocus',
+    autoFocus: true,
   },
   {
     type: 'password',
@@ -23,7 +23,7 @@ export const SIGNUP_DATA = [
     name: 'email',
     placeholder: '이메일',
     requirements: '이메일에 "@"를 포함해주세요.',
-    autoFocus: 'autoFocus',
+    autoFocus: true,
   },
   {
     type: 'password',
