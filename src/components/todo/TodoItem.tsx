@@ -27,17 +27,15 @@ type UpdateTodoProps = [
   () => void
 ];
 
-const TodoItem = ({
-  todoProps: { id, todo, isCompleted },
-  setTodos,
-}: TodoItemProps) => {
+const TodoItem = ({ todoProps, setTodos }: TodoItemProps) => {
+  const { id, todo, isCompleted } = todoProps;
   const { handleUpdateTodo, handleUpdateIsCompleted, handleDeleteTodo } =
     useTodo();
 
   const [{ upDatedTodo }, handleChange, reset] = useInputs({
     upDatedTodo: '',
   }) as UpdateTodoProps;
-  
+
   const [isEditMode, toggleMode] = useToggle();
   const [isChecked, toggleChecked] = useToggle(isCompleted);
 
