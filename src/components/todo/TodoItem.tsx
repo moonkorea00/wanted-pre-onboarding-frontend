@@ -21,14 +21,23 @@ interface TodoItemProps {
   setTodos: React.Dispatch<SetStateAction<Iprops[]>>;
 }
 
+type UpdateTodoProps = [
+  { upDatedTodo: string },
+  React.ChangeEventHandler<HTMLInputElement>,
+  () => void
+];
+
 const TodoItem = ({
   todoProps: { id, todo, isCompleted },
   setTodos,
 }: TodoItemProps) => {
   const { handleUpdateTodo, handleUpdateIsCompleted, handleDeleteTodo } =
     useTodo();
-  // const [{ upDatedTodo }, handleChange, reset] = useInputs({ upDatedTodo: '' });
-  const [{ upDatedTodo }, handleChange, reset] = useInputs({ upDatedTodo: '' });
+
+  const [{ upDatedTodo }, handleChange, reset] = useInputs({
+    upDatedTodo: '',
+  }) as UpdateTodoProps;
+  
   const [isEditMode, toggleMode] = useToggle();
   const [isChecked, toggleChecked] = useToggle(isCompleted);
 
@@ -111,7 +120,7 @@ const TodoText = styled.div`
   overflow: hidden;
   font-size: 16px;
 
-  ${({ isChecked }) =>
+  ${({ isChecked }: { isChecked: boolean }) =>
     isChecked &&
     css`
       text-decoration: line-through;

@@ -17,16 +17,17 @@ interface IProps {
   inputData: InputConstants[];
 }
 
-interface Props {
-  email: string;
-  password: string;
-}
+type UseInputProps = [
+  { email: string; password: string },
+  React.ChangeEventHandler<HTMLInputElement>
+];
+
 const AuthForm = ({ formType, setFormType, inputData }: IProps) => {
-  // const [{ email, password }, handleChange]: [{email:string, password: string}, Function] = useInputs({
   const [{ email, password }, handleChange] = useInputs({
     email: '',
     password: '',
-  });
+  }) as UseInputProps;
+
   const { handleSignUp, handleSignIn } = useAuth({ email, password });
 
   const form = { email, password };

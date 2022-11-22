@@ -4,8 +4,8 @@ import storage from '../../utils/Storage/storage';
 import { ROUTES } from '../../Router';
 
 interface authInputProps {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 }
 const useAuth = (authInputs: authInputProps) => {
   // const useAuth = ({ email, password }: authInputProps) => {

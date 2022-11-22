@@ -12,9 +12,16 @@ interface IProps {
   setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>;
 }
 
+type UseInputProps = [
+  { todo: string },
+  React.ChangeEventHandler<HTMLInputElement>,
+  () => void
+];
+
 const AddTodoForm = ({ setTodos }: IProps) => {
-  const [{ todo }, handleChange, reset] = useInputs({ todo: '' });
-  // const [todo, handleChange, reset] = useInputs({ todo: '' });
+  const [{ todo }, handleChange, reset] = useInputs({
+    todo: '',
+  }) as UseInputProps;
   const { handleCreateTodo } = useTodo();
 
   const onCreateTodo = (event: React.FormEvent<HTMLFormElement>) => {
@@ -24,7 +31,7 @@ const AddTodoForm = ({ setTodos }: IProps) => {
   };
 
   return (
-    <Form>
+    <Form onSubmit={onCreateTodo}>
       <TodoInput
         type="text"
         placeholder="Todo 추가하기 ..."
@@ -33,7 +40,7 @@ const AddTodoForm = ({ setTodos }: IProps) => {
         onChange={handleChange}
         autoFocus
       />
-      <AddTodoButton onClick={onCreateTodo} disabled={!todo} todo={todo}>
+      <AddTodoButton disabled={!todo} todo={todo}>
         추가
       </AddTodoButton>
     </Form>
@@ -66,7 +73,7 @@ const AddTodoButton = styled.button`
   border: none;
   letter-spacing: 2px;
   opacity: 0.7;
-  cursor: ${({ todo }: TodoProps) => todo && 'pointer'};
+  cursor: ${({ todo }: { todo: string }) => todo && 'pointer'};
 
   &:hover {
     opacity: 1;

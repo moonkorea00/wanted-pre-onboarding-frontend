@@ -11,7 +11,7 @@ const useTodo = () => {
   const FAILED_REQUEST = '문제가 발생했습니다. 다시 시도해 주세요';
 
   const handleGetTodos = async (
-    setTodos: (React.Dispatch<React.SetStateAction<TodoProps[]>>)
+    setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>
   ) => {
     try {
       const res = await TodoApi.getTodos();
@@ -22,7 +22,7 @@ const useTodo = () => {
   };
 
   const handleCreateTodo = async (
-    { todo }: TodoProps,
+    { todo }: { todo: string },
     setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>
   ) => {
     try {
