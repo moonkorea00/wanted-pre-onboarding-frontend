@@ -24,14 +24,16 @@ const AddTodoForm = ({ setTodos }: IProps) => {
   }) as UseInputProps;
   const { handleCreateTodo } = useTodo();
 
-  const onCreateTodo = (event: React.FormEvent<HTMLFormElement>) => {
+  const onCreateTodoAndResetInput = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
     handleCreateTodo({ todo }, setTodos);
     reset();
   };
 
   return (
-    <Form onSubmit={onCreateTodo}>
+    <Form onSubmit={onCreateTodoAndResetInput}>
       <TodoInput
         type="text"
         placeholder="Todo 추가하기 ..."

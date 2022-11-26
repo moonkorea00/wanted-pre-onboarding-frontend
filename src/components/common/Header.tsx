@@ -5,12 +5,13 @@ import useAuth from '../../hooks/auth/useAuth';
 
 const Header = () => {
   const { handleLogOut } = useAuth();
+  const isLoggedIn = storage.get('access_token');
 
   return (
     <HeaderContainer>
       <Title>wanted: 프리온보딩</Title>
-      <Logo src={ReactLogo} alt="react-logo" />
-      {storage.get('access_token') && (
+      <Logo src={ReactLogo} alt="react" />
+      {isLoggedIn && (
         <SignOutButton onClick={handleLogOut}>로그아웃</SignOutButton>
       )}
     </HeaderContainer>

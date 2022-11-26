@@ -29,7 +29,7 @@ type UpdateTodoProps = [
 
 const TodoItem = ({ todoProps, setTodos }: TodoItemProps) => {
   const { id, todo, isCompleted } = todoProps;
-  const { handleUpdateTodo, handleUpdateIsCompleted, handleDeleteTodo } =
+  const { handleUpdateTodo, handleUpdateIsTodoCompleted, handleDeleteTodo } =
     useTodo();
 
   const [{ upDatedTodo }, handleChange, reset] = useInputs({
@@ -39,7 +39,7 @@ const TodoItem = ({ todoProps, setTodos }: TodoItemProps) => {
   const [isEditMode, toggleMode] = useToggle();
   const [isChecked, toggleChecked] = useToggle(isCompleted);
 
-  const onUpdateTodo = () => {
+  const onUpdateTodoAndToggleMode = () => {
     if (upDatedTodo)
       handleUpdateTodo({ id, todo: upDatedTodo, isCompleted }, setTodos);
     else return;
@@ -57,7 +57,7 @@ const TodoItem = ({ todoProps, setTodos }: TodoItemProps) => {
         checked={isChecked}
         onChange={toggleChecked}
         onClick={() =>
-          handleUpdateIsCompleted(
+          handleUpdateIsTodoCompleted(
             { id, todo, isCompleted: !isChecked },
             setTodos
           )
@@ -78,7 +78,9 @@ const TodoItem = ({ todoProps, setTodos }: TodoItemProps) => {
         <Flexbox>
           {isEditMode ? (
             <>
-              <SaveEditButton onClick={onUpdateTodo}>변경</SaveEditButton>
+              <SaveEditButton onClick={onUpdateTodoAndToggleMode}>
+                변경
+              </SaveEditButton>
               <DiscardEditButton onClick={toggleMode}>취소</DiscardEditButton>
             </>
           ) : (
@@ -115,8 +117,8 @@ const TodoWrapper = styled.div`
 
 const TodoText = styled.div`
   width: 90%;
-  overflow: hidden;
   font-size: 16px;
+  overflow: hidden;
 
   ${({ isChecked }: { isChecked: boolean }) =>
     isChecked &&

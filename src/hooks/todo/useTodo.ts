@@ -47,7 +47,7 @@ const useTodo = () => {
     }
   };
 
-  const handleUpdateIsCompleted = async (
+  const handleUpdateIsTodoCompleted = async (
     { id, todo, isCompleted }: TodoProps,
     setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>
   ) => {
@@ -79,7 +79,7 @@ const useTodo = () => {
     handleCreateTodo,
     handleGetTodos,
     handleUpdateTodo,
-    handleUpdateIsCompleted,
+    handleUpdateIsTodoCompleted,
     handleDeleteTodo,
   };
 };

@@ -38,7 +38,7 @@ const AuthForm = ({ formType, setFormType, inputData }: IProps) => {
     e.preventDefault();
     formType === '로그인' ? handleSignIn() : handleSignUp();
   };
-  console.log(typeof handleChange);
+
   return (
     <Form onSubmit={handleSubmitAuthForm}>
       <AuthTitle>{formType}</AuthTitle>
