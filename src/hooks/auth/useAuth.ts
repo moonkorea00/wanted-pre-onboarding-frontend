@@ -16,7 +16,7 @@ const useAuth = (authInputs: authInputProps) => {
       const res = await AuthApi.signUp(authInputs);
       // const res = await AuthApi.signUp({ email, password });
       storage.set('access_token', res.data.access_token);
-      navigate(ROUTES.todo);
+      navigate(ROUTES.TODO);
     } catch (err) {
       alert(err.response.data.message);
       throw new Error(err);
@@ -28,7 +28,7 @@ const useAuth = (authInputs: authInputProps) => {
       const res = await AuthApi.signIn(authInputs);
       // const res = await AuthApi.signIn({ email, password });
       storage.set('access_token', res.data.access_token);
-      navigate(ROUTES.todo);
+      navigate(ROUTES.TODO);
     } catch (err) {
       alert(err.response.data.message);
       throw new Error(err);
@@ -37,7 +37,7 @@ const useAuth = (authInputs: authInputProps) => {
 
   const handleLogOut = () => {
     storage.remove('access_token');
-    navigate(ROUTES.auth);
+    navigate(ROUTES.AUTH);
   };
 
   return { handleSignUp, handleSignIn, handleLogOut };

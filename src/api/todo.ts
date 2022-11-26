@@ -8,18 +8,17 @@ interface Props {
 }
 
 const TodoApi = {
-  // createTodo: (todo: string) => {
   createTodo: (todo: object) => {
-    return clientApi.post(END_POINT.todo, todo);
+    return clientApi.post(END_POINT.TODO, todo);
   },
   getTodos: () => {
-    return clientApi.get(END_POINT.todo);
+    return clientApi.get(END_POINT.TODO);
   },
   updateTodo: ({ id, todo, isCompleted }: Props) => {
-    return clientApi.put(`${END_POINT.todo}/${id}`, { todo, isCompleted });
+    return clientApi.put(`${END_POINT.TODO}/${id}`, { todo, isCompleted });
   },
   deleteTodo: (id: number) => {
-    return clientApi.delete(`${END_POINT.todo}/${id}`);
+    return clientApi.delete(`${END_POINT.TODO}/${id}`);
   },
 };
 
