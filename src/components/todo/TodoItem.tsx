@@ -138,7 +138,6 @@ const EditTodoInput = styled.input`
 const Checkbox = styled.input`
   height: 15px;
   margin-right: 0.6vw;
-  cursor: pointer;
 `;
 
 const Flexbox = styled.div`

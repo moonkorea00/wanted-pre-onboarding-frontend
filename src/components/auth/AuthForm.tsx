@@ -94,7 +94,6 @@ const SubmitButton = styled.button`
   font-size: 24px;
   color: white;
   font-weight: bold;
-  border: none;
   border-radius: 7px;
   background-color: rgb(50, 150, 127);
   ${({ disabled }) => css`

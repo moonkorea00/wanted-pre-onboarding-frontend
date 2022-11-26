@@ -58,7 +58,6 @@ const UserInput = styled.input`
   width: 100%;
   padding: 1vh 1vw;
   font-size: 20px;
-  border: none;
   border-radius: 10px;
   background-color: rgb(241, 241, 241);
 

@@ -60,9 +60,7 @@ const TodoInput = styled.input`
   width: 100%;
   height: 4vh;
   font-size: 15px;
-  border: none;
   background-color: inherit;
-  outline: none;
 `;
 
 const AddTodoButton = styled.button`
@@ -72,7 +70,6 @@ const AddTodoButton = styled.button`
   font-weight: 900;
   color: black;
   background-color: rgb(235, 235, 235);
-  border: none;
   letter-spacing: 2px;
   opacity: 0.7;
   cursor: ${({ todo }: { todo: string }) => todo && 'pointer'};
