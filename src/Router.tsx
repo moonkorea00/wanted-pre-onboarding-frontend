@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/common/Header';
 import Auth from './pages/Auth';
 import RequireAuth from './utils/ProtectedRoutes/RequireAuth';
-import NotFound from './pages/NotFound';
+import NotFound from './pages/NotFound.';
 
 const Todo = lazy(() => import('./pages/Todo'));
 
@@ -14,16 +14,16 @@ function Router() {
       <Routes>
         <Route
           element={
-            <RequireAuth isAuthRequired={false} redirectUrl={ROUTES.todo} />
+            <RequireAuth isAuthRequired={false} redirectUrl={ROUTES.TODO} />
           }
         >
-          <Route path={ROUTES.auth} element={<Auth />} />
+          <Route path={ROUTES.AUTH} element={<Auth />} />
         </Route>
         <Route
-          element={<RequireAuth isAuthRequired redirectUrl={ROUTES.auth} />}
+          element={<RequireAuth isAuthRequired redirectUrl={ROUTES.AUTH} />}
         >
           <Route
-            path={ROUTES.todo}
+            path={ROUTES.TODO}
             element={
               <Suspense fallback={<></>}>
                 <Todo />
@@ -41,6 +41,6 @@ function Router() {
 export default Router;
 
 export const ROUTES = {
-  auth: '/',
-  todo: '/todo',
+  AUTH: '/',
+  TODO: '/todo',
 };

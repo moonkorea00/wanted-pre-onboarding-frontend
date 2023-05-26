@@ -16,6 +16,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(241, 241, 241);
 }
+
+input {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
 `;
 
 export default GlobalStyle;

@@ -5,12 +5,13 @@ import useAuth from '../../hooks/auth/useAuth';
 
 const Header = () => {
   const { handleLogOut } = useAuth();
+  const isLoggedIn = storage.get('access_token');
 
   return (
     <HeaderContainer>
       <Title>wanted: 프리온보딩</Title>
-      <Logo src={ReactLogo} alt="react-logo" />
-      {storage.get('access_token') && (
+      <Logo src={ReactLogo} alt="react" />
+      {isLoggedIn && (
         <SignOutButton onClick={handleLogOut}>로그아웃</SignOutButton>
       )}
     </HeaderContainer>
@@ -18,8 +19,9 @@ const Header = () => {
 };
 
 const HeaderContainer = styled.header`
-  ${({ theme }) => theme.flexCustom(null, 'center', 'center')}
+  ${({ theme }) => theme.flexCenter}
   width: 100vw;
+  min-width: 600px;
   background-color: black;
   border-bottom: 1px solid black;
 `;
@@ -56,10 +58,8 @@ const SignOutButton = styled.button`
   font-size: 20px;
   color: white;
   font-weight: bold;
-  border: none;
   border-radius: 7px;
   background-color: rgb(50, 150, 127);
-  cursor: pointer;
 
   &:hover {
     background-color: rgb(40, 140, 117);
