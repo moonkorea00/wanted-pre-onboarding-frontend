@@ -1,9 +1,9 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 
-const useInputs = (initialValue: object) => {
+const useInputs = initialValue => {
   const [form, setForm] = useState(initialValue);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setForm(form => ({ ...form, [name]: value }));
   };

@@ -9,7 +9,7 @@ const Spinner = () => {
 };
 
 const SpinnerContainer = styled.div`
-  ${({ theme }) => theme.flexCenter}
+  ${({ theme }) => theme.flexCustom(null, 'center', 'center')}
   width: 100%;
   height: 80%;
 `;

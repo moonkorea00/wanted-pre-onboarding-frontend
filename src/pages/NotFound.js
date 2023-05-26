@@ -23,8 +23,7 @@ const NotFound = () => {
 };
 
 const NotFoundTemplate = styled.main`
-  ${({ theme }) => theme.flexCenter};
-  flex-direction: column;
+  ${({ theme }) => theme.flexCustom('column', 'center', 'center')};
   width: 100vw;
   height: 90vh;
 `;
@@ -42,7 +41,7 @@ const RedirectButton = styled.button`
   border-radius: 10px;
   border: none;
   cursor: pointer;
-
+  
   &:hover {
     background-color: rgb(235, 235, 235);
   }
