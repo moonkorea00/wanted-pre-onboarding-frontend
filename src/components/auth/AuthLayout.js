@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-interface Iprops {
-  children: React.ReactNode;
-}
-
-const AuthLayout = ({ children }: Iprops) => {
+const AuthLayout = ({ children }) => {
   return <AuthTemplate>{children}</AuthTemplate>;
 };
 

@@ -1,12 +1,7 @@
 import { Outlet, Navigate } from 'react-router-dom';
 import storage from '../Storage/storage';
 
-interface requiredAuthProps {
-  isAuthRequired: boolean;
-  redirectUrl: string;
-}
-
-const RequireAuth = ({ isAuthRequired, redirectUrl }: requiredAuthProps) => {
+const RequireAuth = ({ isAuthRequired, redirectUrl }) => {
   const token = storage.get('access_token');
 
   return isAuthRequired === (token !== null) ? (

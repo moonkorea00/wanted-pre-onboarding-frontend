@@ -1,47 +1,20 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { SetStateAction, useEffect } from 'react';
+import { useEffect } from 'react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import useToggle from '../../hooks/common/useToggle';
 import useTodo from '../../hooks/todo/useTodo';
 import useInputs from '../../hooks/common/useInputs';
 
-interface Iprops {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-}
-
-interface TodoItemProps {
-  todoProps: {
-    id: number;
-    todo: string;
-    isCompleted: boolean;
-  };
-  setTodos: React.Dispatch<SetStateAction<Iprops[]>>;
-}
-
-type UpdateTodoProps = [
-  { upDatedTodo: string },
-  React.ChangeEventHandler<HTMLInputElement>,
-  () => void
-];
-
-const TodoItem = ({ todoProps, setTodos }: TodoItemProps) => {
-  const { id, todo, isCompleted } = todoProps;
-  const { handleUpdateTodo, handleUpdateIsTodoCompleted, handleDeleteTodo } =
+const TodoItem = ({ todoProps: { id, todo, isCompleted }, setTodos }) => {
+  const { handleUpdateTodo, handleUpdateIsCompleted, handleDeleteTodo } =
     useTodo();
-
-  const [{ upDatedTodo }, handleChange, reset] = useInputs({
-    upDatedTodo: '',
-  }) as UpdateTodoProps;
-
+  const [{ upDatedTodo }, handleChange, reset] = useInputs({ upDatedTodo: '' });
   const [isEditMode, toggleMode] = useToggle();
   const [isChecked, toggleChecked] = useToggle(isCompleted);
 
-  const onUpdateTodoAndToggleMode = () => {
-    if (upDatedTodo)
-      handleUpdateTodo({ id, todo: upDatedTodo, isCompleted }, setTodos);
+  const onUpdateTodo = () => {
+    if (upDatedTodo) handleUpdateTodo({ id, todo: upDatedTodo, isCompleted }, setTodos);
     else return;
     toggleMode();
   };
@@ -57,7 +30,7 @@ const TodoItem = ({ todoProps, setTodos }: TodoItemProps) => {
         checked={isChecked}
         onChange={toggleChecked}
         onClick={() =>
-          handleUpdateIsTodoCompleted(
+          handleUpdateIsCompleted(
             { id, todo, isCompleted: !isChecked },
             setTodos
           )
@@ -78,9 +51,7 @@ const TodoItem = ({ todoProps, setTodos }: TodoItemProps) => {
         <Flexbox>
           {isEditMode ? (
             <>
-              <SaveEditButton onClick={onUpdateTodoAndToggleMode}>
-                변경
-              </SaveEditButton>
+              <SaveEditButton onClick={onUpdateTodo}>변경</SaveEditButton>
               <DiscardEditButton onClick={toggleMode}>취소</DiscardEditButton>
             </>
           ) : (
@@ -94,10 +65,10 @@ const TodoItem = ({ todoProps, setTodos }: TodoItemProps) => {
 };
 
 const TodoItemWrapper = styled.div`
-  ${({ theme }) => theme.flexDefault}
+  ${({ theme }) => theme.flexCustom(null, null, 'center')}
   border-bottom: 1px solid black;
 
-  ${({ isChecked }: { isChecked: boolean }) =>
+  ${({ isChecked }) =>
     isChecked &&
     css`
       background-color: rgb(233, 233, 233);
@@ -105,8 +76,7 @@ const TodoItemWrapper = styled.div`
 `;
 
 const TodoWrapper = styled.div`
-  ${({ theme }) => theme.flexDefault};
-  justify-content: space-between;
+  ${({ theme }) => theme.flexCustom(null, 'space-between', 'center')};
   width: 100%;
   height: 4vh;
   padding: 2.5vh 0;
@@ -117,10 +87,10 @@ const TodoWrapper = styled.div`
 
 const TodoText = styled.div`
   width: 90%;
-  font-size: 16px;
   overflow: hidden;
+  font-size: 16px;
 
-  ${({ isChecked }: { isChecked: boolean }) =>
+  ${({ isChecked }) =>
     isChecked &&
     css`
       text-decoration: line-through;
@@ -138,6 +108,7 @@ const EditTodoInput = styled.input`
 const Checkbox = styled.input`
   height: 15px;
   margin-right: 0.6vw;
+  cursor: pointer;
 `;
 
 const Flexbox = styled.div`

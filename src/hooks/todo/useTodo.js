@@ -1,18 +1,9 @@
-import React from 'react';
 import TodoApi from '../../api/todo';
-
-interface TodoProps {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-}
 
 const useTodo = () => {
   const FAILED_REQUEST = '문제가 발생했습니다. 다시 시도해 주세요';
 
-  const handleGetTodos = async (
-    setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>
-  ) => {
+  const handleGetTodos = async setTodos => {
     try {
       const res = await TodoApi.getTodos();
       setTodos(res.data);
@@ -21,10 +12,7 @@ const useTodo = () => {
     }
   };
 
-  const handleCreateTodo = async (
-    { todo }: { todo: string },
-    setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>
-  ) => {
+  const handleCreateTodo = async ({ todo }, setTodos) => {
     try {
       const res = await TodoApi.createTodo({ todo });
       setTodos(prev => [...prev, res.data]);
@@ -34,9 +22,19 @@ const useTodo = () => {
     }
   };
 
-  const handleUpdateTodo = async (
-    { id, todo, isCompleted }: TodoProps,
-    setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>
+  const handleUpdateTodo = async ({ id, todo, isCompleted }, setTodos) => {
+    try {
+      const res = await TodoApi.updateTodo({ id, todo, isCompleted });
+      setTodos(prev => prev.map(todo => (todo.id === id ? res.data : todo)));
+    } catch (err) {
+      alert(FAILED_REQUEST);
+      throw new Error(err);
+    }
+  };
+
+  const handleUpdateIsCompleted = async (
+    { id, todo, isCompleted },
+    setTodos
   ) => {
     try {
       const res = await TodoApi.updateTodo({ id, todo, isCompleted });
@@ -47,23 +45,7 @@ const useTodo = () => {
     }
   };
 
-  const handleUpdateIsTodoCompleted = async (
-    { id, todo, isCompleted }: TodoProps,
-    setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>
-  ) => {
-    try {
-      const res = await TodoApi.updateTodo({ id, todo, isCompleted });
-      setTodos(prev => prev.map(todo => (todo.id === id ? res.data : todo)));
-    } catch (err) {
-      alert(FAILED_REQUEST);
-      throw new Error(err);
-    }
-  };
-
-  const handleDeleteTodo = async (
-    id: number,
-    setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>
-  ) => {
+  const handleDeleteTodo = async (id, setTodos) => {
     try {
       if (window.confirm('삭제하시겠습니까?')) {
         await TodoApi.deleteTodo(id);
@@ -79,7 +61,7 @@ const useTodo = () => {
     handleCreateTodo,
     handleGetTodos,
     handleUpdateTodo,
-    handleUpdateIsTodoCompleted,
+    handleUpdateIsCompleted,
     handleDeleteTodo,
   };
 };
